@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FirstPage</title>
+    <script src="../static/js/jquery-3.0.0.js"></script> <!--当前文件在views目录下，因此用".."返回上一层，即WEB-INF下，然后进入static目录，向下访问js-->
+</head>
+<script>
+    $(function () {
+       var Person = function (name) {
+           this.name=name;
+           this.sayName=function(){
+               alert(this.name);
+           }
+       }
+
+       var p1=new Person("Bob");
+       alert(p1.prototype);//undifined
+        alert(p1.__proto__);//Object object
+       alert(Person.prototype);//Object object
+    });
+</script>
+<body>
+啦啦啦啦啦啦
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>TreeViewByJQuery</title>
+    <link href="../static/css/jquery.treeview.css" rel="stylesheet">
+    <script src="../static/js/jquery-3.0.0.js"></script>
+    <script src="../static/js/jquery.treeview.js"></script>
+</head>
+<script>
+    $(function () {
+        $.ajax({
+            type:"GET",
+            url:"/tree/treeView.do",
+            async:false,
+            dataType:"json",
+            success:function (data) {
+                var html = buildTree(data);
+                $("#tree").append(html);
+            }
+        });
+
+        $("#tree").treeview({});
+    });
+    var buildTree = function(data){
+        var html="";
+        $.each(data,function(i,n){
+            html = html+"<li><span class=\"folder\">"+n.text+"</span>";
+            var children = buildTree(n.nodes);
+            html = html+"<ul>"+children+"</ul>";
+            console.log(html);
+        })
+
+        return html;
+    }
+
+</script>
+<body>
+<ul id="tree" class="filetree"></ul>
+
+</body>
+</html>
